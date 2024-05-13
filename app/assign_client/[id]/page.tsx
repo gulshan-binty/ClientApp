@@ -31,6 +31,7 @@ const assignClient = () => {
     try {
       const pathParts = pathname.split("/");
       const id = pathParts.length > 2 && pathParts[2];
+
       const payload = {
         employee_id: parseInt(id.toString()),
         client_ids: selectedClients,
