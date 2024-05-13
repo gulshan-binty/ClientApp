@@ -1,10 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import axios from "axios";
-import e from "express";
+
 const image = () => {
   const [file, setFile] = useState<File>();
-  const [selectedImage, setSelectedImage] = useState<string | undefined>();
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault;
     console.log(e);

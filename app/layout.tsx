@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import Sidebar from "./components/sidebar";
 import { ReactQueryProvider } from "./react-query-provider";
 import { redirect, usePathname, useRouter } from "next/navigation";
-import { getServerSession } from "next-auth";
 const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {

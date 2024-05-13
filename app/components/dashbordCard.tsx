@@ -1,12 +1,6 @@
 "use client";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import {
-  Activity,
-  CreditCard,
-  DollarSign,
-  Users,
-  Briefcase,
-} from "lucide-react";
+import { Users, Briefcase } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { fetchData, fetchEmployeeData } from "@/actions/action";
 

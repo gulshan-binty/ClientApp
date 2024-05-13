@@ -2,13 +2,7 @@
 // ClientTable.tsx
 
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -17,31 +11,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  CheckCheck,
-  CircleX,
-  Search,
-  SquarePen,
-  Trash2,
-  UserRoundPlus,
-} from "lucide-react";
-import {
-  deleteEmployee,
-  fetchAllEmployeeClients,
-  fetchEmployeeData,
-} from "@/actions/action";
-import Link from "next/link";
+import { CheckCheck, CircleX, Search } from "lucide-react";
+import { fetchAllEmployeeClients, fetchEmployeeData } from "@/actions/action";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
 import ReactPaginate from "react-paginate";
 import { Input } from "@/components/ui/input";
 interface employee {
   employee_id: number;
   employee_name: string;
-  employee_email: string;
-  employee_phone: string;
-  employee_designation: string;
-  employee_image: string;
 }
 interface EmployeeClient {
   employee_id: number;
@@ -51,13 +28,11 @@ interface EmployeeClient {
 }
 const activeTable = () => {
   const [employee, setEmployee] = useState<employee[]>([]);
-  const [clientData, setClientData] = useState([]);
   const [employeeClients, setEmployeeClients] = useState<EmployeeClient[]>([]);
   const [showAllClients, setShowAllClients] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(7);
   const [searchTerm, setSearchTerm] = useState("");
-  const router = useRouter();
 
   useEffect(() => {
     const fetchEmployee = async () => {
@@ -98,7 +73,7 @@ const activeTable = () => {
   return (
     <Card className="max-h-auto min-h-screen">
       <CardHeader>
-        <CardTitle>Employee List</CardTitle>
+        <CardTitle>Active Employee List</CardTitle>
         <div className="flex justify-end gap-5">
           <form className="flex-1 sm:flex-initial ">
             <div className="relative">
@@ -112,17 +87,7 @@ const activeTable = () => {
               />
             </div>
           </form>
-
-          <Link
-            href="/createEmployee"
-            className="text-white bg-indigo-400 focus:outline-none p-2 rounded-md font-semibold"
-          >
-            Create Employee
-          </Link>
         </div>
-        <CardDescription>
-          Manage your products and view their sales performance.
-        </CardDescription>
       </CardHeader>
       <CardContent>
         <Table>

@@ -1,12 +1,5 @@
 "use client";
-import {
-  FileClock,
-  Home,
-  LayoutDashboard,
-  LogOut,
-  User,
-  Users,
-} from "lucide-react";
+import { FileClock, LayoutDashboard, LogOut, User, Users } from "lucide-react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";

@@ -152,7 +152,7 @@ const employeeTable = () => {
           </Link>
         </div>
         <CardDescription>
-          Manage your products and view their sales performance.
+          Manage your employee and view their details.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -174,7 +174,7 @@ const employeeTable = () => {
               <TableRow key={e.employee_id}>
                 <TableCell className="font-medium">{e.employee_id}</TableCell>
                 <TableCell>
-                  <img src={e.employee_image} alt="" height={100} width={100} />
+                  <img src={e.employee_image} alt="" height={80} width={80} />
                 </TableCell>
                 <TableCell>{e.employee_name}</TableCell>
                 <TableCell>{e.employee_email}</TableCell>
