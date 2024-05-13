@@ -144,7 +144,7 @@ const AddProject = () => {
       if (selectedClients.length > 0) {
         await addEmployeeClient({
           employee_id: id,
-          client_id: selectedClients,
+          client_ids: selectedClients,
         });
         // Assign each selected client to the employee
         // for (const clientId of selectedClients) {
