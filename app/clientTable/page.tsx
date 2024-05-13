@@ -156,6 +156,7 @@ const ClientTable = () => {
               <TableHead>Client Phone</TableHead>
               <TableHead>Assigned Employee</TableHead>
               <TableHead>Actions</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
