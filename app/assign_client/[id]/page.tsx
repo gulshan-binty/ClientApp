@@ -31,12 +31,19 @@ const assignClient = () => {
     try {
       const pathParts = pathname.split("/");
       const id = pathParts.length > 2 && pathParts[2];
-      for (const clientId of selectedClients) {
-        await addEmployeeClient({
-          employee_id: id,
-          client_id: clientId,
-        });
-      }
+      const payload = {
+        employee_id: parseInt(id.toString()),
+        client_ids: selectedClients,
+      };
+
+      // Call addEmployeeClient with the payload
+      await addEmployeeClient(payload);
+      // for (const clientId of selectedClients) {
+      //   await addEmployeeClient({
+      //     employee_id: id,
+      //     client_id: clientId,
+      //   });
+      // }
       // Optionally, you can display a success message or perform any other action
       console.log("Clients assigned successfully!");
     } catch (error) {
