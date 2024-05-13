@@ -113,8 +113,6 @@ export const updateEmployee = async (employeeId: any, formData: FormData) => {
 
 export const addEmployeeClient = async (formData: any) => {
   try {
-    // debugger;
-    console.log("client data: ", JSON.stringify(formData));
     const response = await fetch("/api/employee_client", {
       method: "POST",
       headers: {

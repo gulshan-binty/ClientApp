@@ -1,8 +1,4 @@
-// DashboardHeader.js
-import { useState } from "react";
-import DashboardSearch from "./dashboardSearch";
-
-const DashboardHeader = ({ openModal }: any) => {
+const DashboardHeader = () => {
   return (
     <header className="">
       <div className="flex justify-between items-center px-6 py-4">

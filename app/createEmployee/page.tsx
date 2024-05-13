@@ -6,12 +6,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   fetchData,
-  addEmployee,
-  updateEmployee,
   fetchEmployeeClients,
   addEmployeeClient,
   removeEmployeeClients,
-  updateRemoveDate,
 } from "@/actions/action";
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
@@ -50,7 +47,6 @@ const AddProject = () => {
   const [clients, setClients] = useState([]);
   const [selectedClients, setSelectedClients] = useState<string[]>([]);
   const [assignedClientNames, setAssignedClientNames] = useState<string[]>([]);
-  const [removedClients, setRemovedClients] = useState<string[]>([]);
   const [file, setFile] = useState<File | string>();
   const [imageUrl, setImageUrl] = useState<string>("");
 
@@ -131,7 +127,7 @@ const AddProject = () => {
           throw new Error("Failed to update employee");
         }
         toast.success("Employee updated successfully");
-        //await removeEmployeeClients(id);
+        await removeEmployeeClients(id);
       } else {
         // Add new employee
         const response = await fetch("/api/employee", requestOptions);
@@ -142,18 +138,14 @@ const AddProject = () => {
         toast.success("Employee added successfully");
       }
       if (selectedClients.length > 0) {
-        await addEmployeeClient({
-          employee_id: id,
-          client_id: selectedClients,
-        });
         // Assign each selected client to the employee
-        // for (const clientId of selectedClients) {
-        //   // Add employee-client relationship
-        //   await addEmployeeClient({
-        //     employee_id: id,
-        //     client_id: clientId,
-        //   });
-        // }
+        for (const clientId of selectedClients) {
+          // Add employee-client relationship
+          await addEmployeeClient({
+            employee_id: id,
+            client_id: clientId,
+          });
+        }
       }
       setTimeout(() => {
         router.push("/employeeTable");

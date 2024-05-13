@@ -142,7 +142,7 @@ const ClientTable = () => {
           </Link>
         </div>
         <CardDescription>
-          Manage your products and view their sales performance.
+          Manage your clients and view their details.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -155,7 +155,6 @@ const ClientTable = () => {
               <TableHead>Client Email</TableHead>
               <TableHead>Client Phone</TableHead>
               <TableHead>Assigned Employee</TableHead>
-              <TableHead>Actions</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -209,10 +208,7 @@ const ClientTable = () => {
                   <button onClick={() => handleEdit(client.client_id)}>
                     <SquarePen className="h-4 w-4 font-thin text-gray-900" />
                   </button>
-                  <button
-                    data-testid={`delete-button-${client.client_id}`}
-                    onClick={() => handleDelete(client.client_id)}
-                  >
+                  <button onClick={() => handleDelete(client.client_id)}>
                     <Trash2 className="h-4 w-4 font-thin text-gray-900" />
                   </button>
                 </TableCell>
