@@ -127,7 +127,7 @@ const AddProject = () => {
           throw new Error("Failed to update employee");
         }
         toast.success("Employee updated successfully");
-        await removeEmployeeClients(id);
+        // await removeEmployeeClients(id);
       } else {
         // Add new employee
         const response = await fetch("/api/employee", requestOptions);
@@ -143,13 +143,13 @@ const AddProject = () => {
           client_ids: selectedClients,
         });
         // Assign each selected client to the employee
-        for (const clientId of selectedClients) {
-          // Add employee-client relationship
-          await addEmployeeClient({
-            employee_id: id,
-            client_id: clientId,
-          });
-        }
+        // for (const clientId of selectedClients) {
+        //   // Add employee-client relationship
+        //   await addEmployeeClient({
+        //     employee_id: id,
+        //     client_id: clientId,
+        //   });
+        // }
       }
       setTimeout(() => {
         router.push("/employeeTable");

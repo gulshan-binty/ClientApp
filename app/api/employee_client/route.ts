@@ -3,10 +3,24 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const { rows } = await pool.query(`SELECT e.*, c.client_name,c.client_id
-      FROM employee e
-      INNER JOIN employee_client ec ON e.employee_id = ec.employee_id
-      INNER JOIN client c ON ec.client_id = c.client_id`);
+    const { rows } = await pool.query(`SELECT
+    ec.id,
+    ec.employee_id,
+    ec.client_id,
+    ec.client_added_date,
+    ec.removed_date,
+    ec.isActive,
+    e.employee_name,
+    e.employee_phone,
+    e.employee_designation,
+    e.employee_email,
+    c.client_name,
+    c.client_email,
+    c.client_phone
+FROM
+    employee_client ec
+    INNER JOIN employee e ON ec.employee_id = e.employee_id
+    INNER JOIN client c ON ec.client_id = c.client_id`);
     return new NextResponse(JSON.stringify(rows), { status: 200 });
   } catch (error) {
     console.error("Error fetching data:", error);

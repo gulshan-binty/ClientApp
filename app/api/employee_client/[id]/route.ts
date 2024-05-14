@@ -7,7 +7,7 @@ export async function GET(req: NextRequest, route: any) {
 
   try {
     const query = `
-      SELECT e.*, c.client_name,c.client_id
+      SELECT e.*, c.client_name,c.client_id,ec.isactive
       FROM employee e
       INNER JOIN employee_client ec ON e.employee_id = ec.employee_id
       INNER JOIN client c ON ec.client_id = c.client_id
@@ -53,59 +53,5 @@ export async function DELETE(req: NextRequest, route: any) {
   } catch (error) {
     console.error("Error deleting employee client relationship:", error);
     return new NextResponse("Internal error", { status: 500 });
-  }
-}
-export async function PUT(req: NextRequest) {
-  try {
-    const employeeId = req.nextUrl.searchParams.get("employeeId");
-    const clientId = req.nextUrl.searchParams.get("clientId");
-    const { remove_date } = await req.json();
-
-    // Validate inputs (e.g., ensure employeeId and clientId are valid)
-    if (!employeeId || !clientId) {
-      return NextResponse.json(
-        { error: "Invalid employeeId or clientId provided" },
-        { status: 400 }
-      );
-    }
-
-    // Check if remove_date is provided and validate its format (if necessary)
-
-    let query;
-    let values;
-
-    if (remove_date) {
-      // If remove_date is provided, update the remove_date for the specified employee-client relationship
-      query = `
-        UPDATE employee_client
-        SET remove_date = $1
-        WHERE employee_id = $2 AND client_id = $3;
-      `;
-      values = [remove_date, employeeId, clientId];
-    } else {
-      // If remove_date is not provided, reset the remove_date for the specified employee-client relationship
-      query = `
-        UPDATE employee_client
-        SET remove_date = NULL
-        WHERE employee_id = $1 AND client_id = $2;
-      `;
-      values = [employeeId, clientId];
-    }
-
-    // Execute the query
-    await pool.query(query, values);
-
-    return NextResponse.json(
-      { message: "Client updated successfully" },
-      { status: 200 }
-    );
-  } catch (error) {
-    // Log detailed error information for debugging purposes
-    console.error("Error updating client:", error);
-
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
   }
 }

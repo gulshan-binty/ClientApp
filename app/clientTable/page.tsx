@@ -178,7 +178,9 @@ const ClientTable = () => {
                 <TableCell className="font-extralight">
                   {employeeData
                     .filter(
-                      (employee: any) => employee.client_id === client.client_id
+                      (employee: any) =>
+                        employee.isactive === true &&
+                        employee.client_id === client.client_id
                     )
                     .slice(0, showAllClients ? undefined : 3)
                     .map((employee: any) => (
@@ -190,7 +192,9 @@ const ClientTable = () => {
                       </div>
                     ))}
                   {employeeData.filter(
-                    (employee: any) => employee.client_id === client.client_id
+                    (employee: any) =>
+                      employee.client_id === client.client_id &&
+                      employee.isactive === true
                   ).length > 3 && (
                     <React.Fragment>
                       {!showAllClients && (
