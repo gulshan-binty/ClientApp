@@ -7,11 +7,26 @@ export async function GET(req: NextRequest, route: any) {
 
   try {
     const query = `
-      SELECT e.*, c.client_name,c.client_id,ec.isactive
-      FROM employee e
-      INNER JOIN employee_client ec ON e.employee_id = ec.employee_id
-      INNER JOIN client c ON ec.client_id = c.client_id
-      WHERE e.employee_id = $1
+     SELECT
+    ec.id,
+    ec.employee_id,
+    ec.client_id,
+    ec.client_added_date,
+    ec.removed_date,
+    ec.isActive,
+    e.employee_name,
+    e.employee_phone,
+    e.employee_designation,
+    e.employee_email,
+    c.client_name,
+    c.client_email,
+    c.client_phone
+FROM
+    employee_client ec
+    INNER JOIN employee e ON ec.employee_id = e.employee_id
+    INNER JOIN client c ON ec.client_id = c.client_id
+WHERE
+    ec.employee_id =$1;
     `;
     const { rows } = await pool.query(query, [id]);
 

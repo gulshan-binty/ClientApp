@@ -50,6 +50,8 @@ const AddProject = () => {
   const [file, setFile] = useState<File | string>();
   const [imageUrl, setImageUrl] = useState<string>("");
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchDataAndAssignClients = async () => {
       try {
@@ -78,21 +80,33 @@ const AddProject = () => {
 
           // Fetch assigned client IDs for the employee
           const clientData = await fetchEmployeeClients(id);
-          const assignedClientIds = clientData.map(
+
+          const activeClients = clientData.filter(
+            (client: any) => client.isactive
+          );
+
+          const assignedClientIds = activeClients.map(
             (client: any) => client.client_id
           );
-          setSelectedClients(assignedClientIds);
-          setAssignedClientNames(
-            clientData.map((client: any) => client.client_name)
+
+          const assignedClientNames = activeClients.map(
+            (client: any) => client.client_name
           );
+
+          setSelectedClients(assignedClientIds);
+          setAssignedClientNames(assignedClientNames);
         }
+
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setIsLoading(false);
       }
     };
 
     fetchDataAndAssignClients();
   }, [pathname, setValue]);
+
   const onSubmit = async (formData: any) => {
     try {
       employeeSchema.parse(formData);
@@ -284,39 +298,41 @@ const AddProject = () => {
           >
             Clients
           </label>
-          <Multiselect
-            options={clients.map((client: any) => ({
-              label: client.client_name,
-              value: client.client_id,
-            }))}
-            selectedValues={assignedClientNames.map((clientName, index) => ({
-              label: clientName,
-              value: selectedClients[index],
-            }))}
-            onSelect={(selectedList) => {
-              const updatedSelectedClients = selectedList.map(
-                (client: any) => client.value
-              );
-              const updatedAssignedClientNames = selectedList.map(
-                (client: any) => client.label
-              );
-              setSelectedClients(updatedSelectedClients);
-
-              setAssignedClientNames(updatedAssignedClientNames);
-            }}
-            onRemove={(selectedItem) => {
-              const updatedSelectedClients = selectedItem.map(
-                (client: any) => client.value
-              );
-              const updatedAssignedClientNames = selectedItem.map(
-                (client: any) => client.label
-              );
-              setSelectedClients(updatedSelectedClients);
-
-              setAssignedClientNames(updatedAssignedClientNames);
-            }}
-            displayValue="label"
-          />
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <Multiselect
+              options={clients.map((client: any) => ({
+                label: client.client_name,
+                value: client.client_id,
+              }))}
+              selectedValues={assignedClientNames.map((clientName, index) => ({
+                label: clientName,
+                value: selectedClients[index],
+              }))}
+              onSelect={(selectedList) => {
+                const updatedSelectedClients = selectedList.map(
+                  (client: any) => client.value
+                );
+                const updatedAssignedClientNames = selectedList.map(
+                  (client: any) => client.label
+                );
+                setSelectedClients(updatedSelectedClients);
+                setAssignedClientNames(updatedAssignedClientNames);
+              }}
+              onRemove={(selectedItem) => {
+                const updatedSelectedClients = selectedItem.map(
+                  (client: any) => client.value
+                );
+                const updatedAssignedClientNames = selectedItem.map(
+                  (client: any) => client.label
+                );
+                setSelectedClients(updatedSelectedClients);
+                setAssignedClientNames(updatedAssignedClientNames);
+              }}
+              displayValue="label"
+            />
+          )}
         </div>
         {submitError && (
           <div className="text-red-500 text-sm mt-1">{submitError}</div>

@@ -9,7 +9,7 @@ export async function GET() {
     ec.client_id,
     ec.client_added_date,
     ec.removed_date,
-    ec.isActive,
+    ec.isactive,
     e.employee_name,
     e.employee_phone,
     e.employee_designation,
