@@ -2,7 +2,7 @@ import { redirect, useRouter } from "next/navigation";
 import { getServerSession } from "next-auth/next";
 import Signup from "./signup";
 
-const page = async () => {
+const Page = async () => {
   const session = await getServerSession();
   if (session) {
     redirect("/dashboard");
@@ -15,4 +15,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default Page;

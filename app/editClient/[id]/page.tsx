@@ -1,3 +1,3 @@
-import createClient from "@/app/createClient/page";
+import CreateClient from "@/app/createClient/page";
 
-export default createClient;
+export default CreateClient;

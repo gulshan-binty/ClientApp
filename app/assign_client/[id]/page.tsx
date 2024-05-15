@@ -4,7 +4,7 @@ import Multiselect from "multiselect-react-dropdown";
 import { addEmployeeClient, fetchData } from "@/actions/action"; // Import your action to add employee-client relationship
 import { usePathname, useRouter } from "next/navigation";
 
-const assignClient = () => {
+const AssignClient = () => {
   const [clients, setClients] = useState([]);
   const [selectedClients, setSelectedClients] = useState([]);
   const pathname = usePathname();
@@ -86,9 +86,9 @@ const assignClient = () => {
         />
         <button
           onClick={handleAssignClients}
-          className="px-4 py-2 mr-3 rounded-md bg-indigo-500 text-white hover:bg-indigo-700 focus:outline-none"
+          className="px-4 py-2 mr-3 rounded-md bg-indigo-400 text-white hover:bg-indigo-500 focus:outline-none"
         >
-          Assign Clients
+          Assign
         </button>
         <button
           type="button"
@@ -102,4 +102,4 @@ const assignClient = () => {
   );
 };
 
-export default assignClient;
+export default AssignClient;

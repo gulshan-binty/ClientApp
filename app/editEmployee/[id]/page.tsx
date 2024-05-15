@@ -1,3 +1,3 @@
-import createEmployee from "@/app/createEmployee/page";
+import CreateEmployee from "@/app/createEmployee/page";
 
-export default createEmployee;
+export default CreateEmployee;

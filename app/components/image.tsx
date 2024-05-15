@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const image = () => {
+const Image = () => {
   const [file, setFile] = useState<File>();
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault;
@@ -44,4 +44,4 @@ const image = () => {
   );
 };
 
-export default image;
+export default Image;

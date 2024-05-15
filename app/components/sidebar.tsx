@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 import React from "react";
 usePathname;
-const sidebar = () => {
+const Sidebar = () => {
   const router = useRouter();
   const handleSignOut = async () => {
     try {
@@ -95,4 +95,4 @@ const sidebar = () => {
   );
 };
 
-export default sidebar;
+export default Sidebar;

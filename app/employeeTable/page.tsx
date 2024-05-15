@@ -37,7 +37,7 @@ interface employee {
   employee_image: string;
 }
 
-const employeeTable = () => {
+const EmployeeTable = () => {
   const [employee, setEmployee] = useState<employee[]>([]);
   const [clientData, setClientData] = useState([]);
   const [showAllClients, setShowAllClients] = useState(false);
@@ -184,8 +184,7 @@ const employeeTable = () => {
                   {clientData
                     .filter(
                       (client: any) =>
-                        client.employee_id === e.employee_id &&
-                        client.isactive === true
+                        client.employee_id === e.employee_id && client.isactive
                     )
                     .slice(0, showAllClients ? undefined : 3)
                     .map((client: any) => (
@@ -198,8 +197,7 @@ const employeeTable = () => {
                     ))}
                   {clientData.filter(
                     (client: any) =>
-                      client.employee_id === e.employee_id &&
-                      client.isactive === true
+                      client.employee_id === e.employee_id && client.isactive
                   ).length > 3 && (
                     <React.Fragment>
                       {!showAllClients && (
@@ -247,4 +245,4 @@ const employeeTable = () => {
   );
 };
 
-export default employeeTable;
+export default EmployeeTable;

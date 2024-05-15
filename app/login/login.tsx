@@ -12,7 +12,7 @@ const LoginSchema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
-const login = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fieldErrors, setFieldErrors] = useState<{
@@ -83,7 +83,7 @@ const login = () => {
           Log in to continue
         </h2>
         <p className="text-left pb-4">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             href="/signup"
             className=" font-semibold underline text-indigo-500"
@@ -154,4 +154,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

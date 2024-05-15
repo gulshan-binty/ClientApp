@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import React from "react";
 
-const dashboardSearch = () => {
+const DashboardSearch = () => {
   return (
     <form className="flex-1 sm:flex-initial ">
       <div className="relative">
@@ -17,4 +17,4 @@ const dashboardSearch = () => {
   );
 };
 
-export default dashboardSearch;
+export default DashboardSearch;

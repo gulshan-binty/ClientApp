@@ -1,6 +1,6 @@
 import React from "react";
 import { signOut } from "next-auth/react";
-const logout = () => {
+const Logout = () => {
   return (
     <div>
       <button
@@ -12,4 +12,4 @@ const logout = () => {
   );
 };
 
-export default logout;
+export default Logout;

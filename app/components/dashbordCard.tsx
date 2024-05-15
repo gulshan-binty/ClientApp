@@ -4,7 +4,7 @@ import { Users, Briefcase } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { fetchData, fetchEmployeeData } from "@/actions/action";
 
-const dashbordCard = () => {
+const DashbordCard = () => {
   const [clients, setClients] = useState([]);
   const [employees, setEmployees] = useState([]);
 
@@ -61,4 +61,4 @@ const dashbordCard = () => {
   );
 };
 
-export default dashbordCard;
+export default DashbordCard;

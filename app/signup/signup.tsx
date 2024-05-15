@@ -13,7 +13,7 @@ const SignupSchema = z.object({
   confirmPassword: z.string(),
 });
 
-const signup = () => {
+const Signup = () => {
   const router = useRouter();
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -157,4 +157,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;
