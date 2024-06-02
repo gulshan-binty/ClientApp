@@ -140,6 +140,7 @@ const AddProject = () => {
 
         toast.success("Employee added successfully");
       }
+      console.log(selectedClients);
       if (selectedClients.length > 0) {
         await addEmployeeClient({
           employee_id: id,

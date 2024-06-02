@@ -1,4 +1,3 @@
-"use client";
 import { FileClock, LayoutDashboard, LogOut, User, Users } from "lucide-react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";

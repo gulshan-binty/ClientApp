@@ -30,6 +30,7 @@ FROM
 
 export async function POST(req: NextRequest) {
   const { employee_id, client_ids } = await req.json();
+  console.log(client_ids);
   // Initialize an array to store the inserted rows
   const modifiedRows = [];
 
@@ -44,7 +45,7 @@ export async function POST(req: NextRequest) {
   );
 
   for (const client_id of client_ids) {
-    if (existingClientIds.includes(client_id)) {
+    if (existingClientIds.includes(client_id || null)) {
       continue;
     } else {
       const { rows } = await pool.query(
@@ -54,7 +55,7 @@ export async function POST(req: NextRequest) {
       modifiedRows.push(rows[0]);
     }
   }
-  for (const c of existingClientIds) {
+  for (const c of existingClientIds || null) {
     if (client_ids.includes(c)) {
       continue;
     } else {

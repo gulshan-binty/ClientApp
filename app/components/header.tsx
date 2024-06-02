@@ -1,3 +1,5 @@
+import DashboardSearch from "./dashboardSearch";
+
 const DashboardHeader = () => {
   return (
     <header className="">
@@ -6,7 +8,7 @@ const DashboardHeader = () => {
           Welcome to Your Dashboard
         </h2>
         <div className="flex items-center gap-2 sm:flex-col md:flex-row">
-          {/* <DashboardSearch /> */}
+          <DashboardSearch />
           {/* <button
             onClick={openModal} // Open the modal when clicked
             className="text-white bg-indigo-500 focus:outline-none p-2 rounded-md font-semibold"

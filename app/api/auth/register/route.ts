@@ -6,7 +6,6 @@ import { pool } from "@/utils/db";
 export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
-    console.log(email, password);
     const hashedpassword = await hash(password, 10);
 
     const rows = await pool.query(
